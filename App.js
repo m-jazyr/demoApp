@@ -1,5 +1,11 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
 import {ThemeProvider} from 'react-native-elements';
 import BottomTabs from './src/components/bottomTabs';
 import Categories from './src/components/categories';
@@ -11,10 +17,10 @@ import Search from './src/components/search';
 const App = () => {
   return (
     <ThemeProvider>
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
+      <View style={styles.container}>
         <SafeAreaView>
           <StatusBar barStyle="dark-content" />
-          <ScrollView style={{marginBottom: 80}}>
+          <ScrollView>
             <Header />
             <Search />
             <InfoCard />
@@ -27,5 +33,9 @@ const App = () => {
     </ThemeProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {flex: 1, backgroundColor: '#fff'},
+});
 
 export default App;

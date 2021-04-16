@@ -1,67 +1,56 @@
 import React from 'react';
 import {
-  Animated,
-  Dimensions,
   Image,
   StyleSheet,
   Text,
   View,
-  ScrollView,
+  FlatList,
 } from 'react-native';
 import {useTheme} from 'react-native-elements';
 import images from '../assets/images';
-
-const deviceWidth = Dimensions.get('window').width;
-const FIXED_BAR_WIDTH = 280;
-const BAR_SPACE = 10;
 
 const carosel = [images.banner, images.banner, images.banner, images.banner];
 
 const Promotions = () => {
   const {theme} = useTheme();
 
-
-  let imageArray = [];
-  carosel.forEach((image, i) => {
-    const thisImage = (
-      <Image
-        key={`image${i}`}
-        source={image}
-        resizeMode={'contain'}
-        resizeMethod={'scale'}
-        style={{width: deviceWidth, height: 300,backgroundColor:'#fff'}}
-      />
-    );
-    imageArray.push(thisImage);
-  });
-
+  const thisImage = ({item}) => (
+    <View style={styles.item}>
+      <Image source={item} resizeMode={'cover'} height={150} />
+    </View>
+  );
   return (
     <View style={styles.container}>
-      <ScrollView
-        horizontal
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>Promotions</Text>
+        <Text style={styles.title}>See all</Text>
+      </View>
+      <FlatList
+        data={carosel}
         showsHorizontalScrollIndicator={false}
-        scrollEventThrottle={10}
-        pagingEnabled>
-        {imageArray}
-      </ScrollView>
+        keyExtractor={(item, index) => index.toString()}
+        horizontal
+        renderItem={thisImage}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: 250,
-    backgroundColor: '#FFF',
-    alignItems: 'center',
+    width: '100%',
+    marginVertical: 16,
   },
   textContainer: {
     flexDirection: 'row',
+    marginHorizontal: 24,
     justifyContent: 'space-between',
   },
   title: {
     fontSize: 18,
     marginBottom: 8,
   },
+  item: {height: 150, width: 280, paddingEnd: 8},
 });
 
 export default Promotions;

@@ -28,7 +28,7 @@ const Search = () => {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
-    padding: 24,
+    marginHorizontal: 24,
   },
   findText: {
     fontSize: 15,
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   searchBarInput: {
     borderBottomWidth: 0,
     paddingHorizontal: 8,
+    padding:0,
     margin: 0,
     fontSize: 18,
   },

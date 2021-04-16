@@ -1,15 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Icon, useTheme} from 'react-native-elements';
-import {bottomTabs, categories} from '../utils/constants';
+import {bottomTabs} from '../utils/constants';
 
 const BottomTabs = () => {
+  const [selected, setselected] = useState(0);
   const {theme} = useTheme();
 
-  const listItem = ({item}) => (
-    <TouchableOpacity style={styles.item}>
-      <Icon name={item.image} size={28} color={theme.colors.grey4} />
-      <Text style={[styles.title, {color: theme.colors.grey2}]}>
+  const listItem = ({item, index}) => (
+    <TouchableOpacity style={styles.item} onPress={() => setselected(index)}>
+      <Icon
+        name={item.image}
+        size={28}
+        color={index == selected ? theme.colors.primary : theme.colors.grey4}
+      />
+      <Text
+        style={[
+          styles.title,
+          {
+            color:
+              index == selected ? theme.colors.primary : theme.colors.grey2,
+          },
+        ]}>
         {item.name}
       </Text>
     </TouchableOpacity>
@@ -31,7 +43,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     position: 'absolute',
     bottom: 0,
-    height: 120,
+    height: 80,
     justifyContent: 'center',
     elevation: 5,
     shadowColor: '#000',
@@ -47,7 +59,8 @@ const styles = StyleSheet.create({
   },
   item: {
     flex: 0.25,
-    height: 100,
+    paddingVertical: 10,
+    height: 80,
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },

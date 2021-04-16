@@ -2,6 +2,9 @@ import React from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {useTheme} from 'react-native-elements';
 import {categories} from '../utils/constants';
+import InfoCard from './infoCard';
+import Promotions from './promotions';
+import Search from './search';
 
 const Categories = () => {
   const {theme} = useTheme();
@@ -22,14 +25,14 @@ const Categories = () => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={listItem}
       />
+      <View style={styles.footer} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
-    borderRadius: 12,
+    paddingHorizontal: 8,
     marginHorizontal: 24,
   },
   item: {
@@ -41,6 +44,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 15,
   },
+  footer: {height: 120, width: '100%'},
 });
 
 export default Categories;
