@@ -4,34 +4,35 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList,
+  ScrollView,
+  Dimensions,
 } from 'react-native';
-import {useTheme} from 'react-native-elements';
 import images from '../assets/images';
 
 const carosel = [images.banner, images.banner, images.banner, images.banner];
-
+const screen = Dimensions.get('screen');
 const Promotions = () => {
-  const {theme} = useTheme();
-
-  const thisImage = ({item}) => (
-    <View style={styles.item}>
-      <Image source={item} resizeMode={'cover'} height={150} />
-    </View>
-  );
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>Promotions</Text>
         <Text style={styles.title}>See all</Text>
       </View>
-      <FlatList
-        data={carosel}
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={(item, index) => index.toString()}
+      <ScrollView
         horizontal
-        renderItem={thisImage}
-      />
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled>
+        {carosel.map((item, index) => (
+          <View key={index} style={styles.item}>
+            <Image
+              source={item}
+              resizeMode={'stretch'}
+              height={100}
+              width={'100%'}
+            />
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 };
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 8,
   },
-  item: {height: 150, width: 280, paddingEnd: 8},
+  item: {height: 198, width: screen.width, alignItems: 'center', paddingEnd: 8},
 });
 
 export default Promotions;

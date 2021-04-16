@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  LogBox,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -15,6 +16,7 @@ import Promotions from './src/components/promotions';
 import Search from './src/components/search';
 
 const App = () => {
+  LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   return (
     <ThemeProvider>
       <View style={styles.container}>
@@ -35,7 +37,7 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#fff'},
+  container: {flex: 1},
 });
 
 export default App;
