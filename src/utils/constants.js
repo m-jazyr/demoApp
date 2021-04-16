@@ -1,4 +1,4 @@
-import images from "../assets/images";
+import images from '../assets/images';
 
 export const categories = [
   {
@@ -38,18 +38,25 @@ export const categories = [
 export const bottomTabs = [
   {
     name: 'Home',
-    image: "home",
+    image: 'home',
   },
   {
     name: 'Orders',
-    image: "reorder",
+    image: 'reorder',
   },
   {
     name: 'Favorite',
-    image: "favorite",
+    image: 'favorite',
   },
   {
     name: 'My Cart',
-    image: "shopping-cart",
+    image: 'shopping-cart',
   },
-]
+];
+
+export const carosel = [
+  images.banner,
+  images.banner,
+  images.banner,
+  images.banner,
+];
