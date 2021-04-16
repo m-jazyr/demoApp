@@ -15,7 +15,7 @@ const InfoCard = () => {
           Order to complete your registration kindly update your profile
         </Text>
       </View>
-      <Image source={images.info} />
+      <Image source={images.info} resizeMode="contain" />
     </View>
   );
 };
@@ -30,11 +30,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fdf8e2',
   },
   textContainer: {
-    width: '75%',
+    width: '90%',
   },
   title: {
+    paddingHorizontal: 8,
     fontSize: 18,
     marginBottom: 8,
+  },
+  desc: {
+    paddingHorizontal: 8,
+    fontSize: 15,
   },
 });
 
