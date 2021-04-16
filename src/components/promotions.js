@@ -1,38 +1,35 @@
 import React from 'react';
 import {
-  Image,
   StyleSheet,
   Text,
   View,
-  ScrollView,
   Dimensions,
 } from 'react-native';
 import images from '../assets/images';
+import { SliderBox } from "react-native-image-slider-box";
+import { useTheme } from 'react-native-elements';
+import FastImage from 'react-native-fast-image';
 
 const carosel = [images.banner, images.banner, images.banner, images.banner];
 const screen = Dimensions.get('screen');
 const Promotions = () => {
+  const {theme} = useTheme()
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>Promotions</Text>
         <Text style={styles.title}>See all</Text>
       </View>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled>
-        {carosel.map((item, index) => (
-          <View key={index} style={styles.item}>
-            <Image
-              source={item}
-              resizeMode={'stretch'}
-              height={100}
-              width={'100%'}
-            />
-          </View>
-        ))}
-      </ScrollView>
+      <SliderBox  sliderBoxHeight={240}
+      autoplay
+      circleLoop
+      resizeMethod={'resize'}
+      resizeMode={'cover'}
+      disableOnPress
+      ImageComponent={FastImage}
+      ImageComponentStyle={{borderRadius: 15,height:250, width: '97%', marginTop: 5}}
+      inactiveDotColor={theme.colors.grey5}
+      images={carosel} />
     </View>
   );
 };
